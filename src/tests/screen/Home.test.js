@@ -2,6 +2,7 @@ import * as React from "react";
 import Adapter from "enzyme-adapter-react-16";
 import { shallow, configure } from "enzyme";
 import Home from "../../screen/Home";
+import SearchBooks from "../../component/SearchBooks";
 
 configure({ adapter: new Adapter() });
 describe("Home", () => {
