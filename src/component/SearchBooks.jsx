@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { SearchBooksByText } from "../service/GetBooksByText";
 
 export default class SearchBooks extends Component {
   state = {
     searchText: "",
     prevSearchText: "",
-    error: ""
+    error: "",
+    resultBooks: ""
   };
 
   onTextChange = e => {
@@ -19,7 +21,13 @@ export default class SearchBooks extends Component {
       this.state.searchText !== ""
     ) {
       this.setState({ prevSearchText: this.state.searchText });
-      //Need to call the search api
+      const searchResult = await SearchBooksByText(
+        this.state.searchText.trim()
+      );
+      this.setState({
+        resultBooks: searchResult
+      });
+      console.log(this.state.resultBooks);
     } else {
       alert("already searched or blank search");
     }
