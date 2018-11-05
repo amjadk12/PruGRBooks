@@ -1,3 +1,17 @@
+## Deployment steps to heroku
+
+1. Setup an account with heroku
+2. Install the hero CLI
+3. Login heroku
+4. Create an app using
+   > heroku create prubook
+5. This will create an app - https://prubook.herokuapp.com/ | https://git.heroku.com/prubook.git
+6. Set to your app
+   > heroku git:remote -a prubook
+7.
+
+In the project directory, you can run:
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
