@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import App from "../App";
 import Adapter from "enzyme-adapter-react-16";
 import { shallow, configure } from "enzyme";
+import Home from "../screen/Home";
 
 configure({ adapter: new Adapter() });
 describe("App", () => {
