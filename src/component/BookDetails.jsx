@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Axios from "axios";
 import PropTypes from "prop-types";
 import { SearchBookDetailsById } from "../service/GetBookDetails";
 
@@ -9,17 +8,21 @@ export default class BookDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      description: "Fetching description for this book...",
+      description: "",
       error: ""
     };
   }
-
-  componentDidMount() {
+  callSearchBook = async () => {
     const bookId = this.props.bookData.best_book.id;
-    const description = SearchBookDetailsById(bookId);
+    const myBookDesc = await SearchBookDetailsById(bookId);
+
     this.setState({
-      description
+      description: myBookDesc
     });
+    console.log(myBookDesc);
+  };
+  componentDidMount() {
+    this.callSearchBook();
   }
 
   render() {
@@ -47,11 +50,7 @@ export default class BookDetails extends Component {
           <p>Avg. Rating: {bookData.average_rating}</p>
         </div>
         <div className="col-lg-10 col-sm-8">
-          {(this.state.error && (
-            <p className="text-danger">{this.state.error}</p>
-          )) || (
-            <p dangerouslySetInnerHTML={{ __html: this.state.description }} />
-          )}
+          <p dangerouslySetInnerHTML={{ __html: this.state.description }} />
         </div>
         <div>
           <p>
