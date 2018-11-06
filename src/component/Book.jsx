@@ -34,9 +34,9 @@ export default class Book extends Component {
           />
         ) : (
           <div className="col-lg-2 col-sm-4 col-md-3">
-            <div className="card">
+            <div>
               <img
-                className="card-img-top pl-2 pr-2 pt-2"
+                className="pl-2 pr-2 pt-2"
                 src={bookData.best_book.image_url}
                 alt="Book cover"
                 height="200px"

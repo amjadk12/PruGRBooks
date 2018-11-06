@@ -57,11 +57,16 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <SearchBooks
-          className="searchbooks"
-          onSearch={this.handleSearch}
-          searchbooks={this.state.searchbooks}
-        />
+        <div className="header clearfix mt-5">
+          <h3 className="text-muted">Pru-Goodreads Search</h3>
+        </div>
+        <div>
+          <SearchBooks
+            className="searchbooks"
+            onSearch={this.handleSearch}
+            searchbooks={this.state.searchbooks}
+          />
+        </div>
         <div className="jumbotron">
           <Books
             className="books"
