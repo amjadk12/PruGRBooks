@@ -1,37 +1,34 @@
 import React, { Component } from "react";
-import { SearchBooksByText } from "../service/GetBooksByText";
 
 export default class SearchBooks extends Component {
   state = {
-    searchText: "",
-    prevSearchText: "",
-    error: "",
-    resultBooks: ""
+    value: this.props.searchbooks.searchText
   };
 
   onTextChange = e => {
-    this.setState({ searchText: e.target.value.trim() });
+    this.setState({ value: e.target.value.trim() });
+    console.log(this.state.value);
   };
   // Avoid un-neccesary calls - Already searched or Blank search
-  handleClick = async () => {
-    if (
-      (this.state.prevSearchText.toLocaleLowerCase() !==
-        this.state.searchText.toLocaleLowerCase() ||
-        this.state.prevSearchText === "") &&
-      this.state.searchText !== ""
-    ) {
-      this.setState({ prevSearchText: this.state.searchText });
-      const searchResult = await SearchBooksByText(
-        this.state.searchText.trim()
-      );
-      this.setState({
-        resultBooks: searchResult
-      });
-      console.log(this.state.resultBooks);
-    } else {
-      alert("already searched or blank search");
-    }
-  };
+  // handleClick = async () => {
+  //   if (
+  //     (this.props.searchbooks.prevSearchText.toLocaleLowerCase() !==
+  //       this.props.searchbooks.searchText.toLocaleLowerCase() ||
+  //       this.props.searchbooks.prevSearchText === "") &&
+  //     this.props.searchbooks.searchText !== ""
+  //   ) {
+  //     this.setState({ prevSearchText: this.props.searchbooks.searchText });
+  //     const searchResult = await SearchBooksByText(
+  //       this.props.searchbooks.searchText.trim()
+  //     );
+  //     this.setState({
+  //       resultBooks: searchResult
+  //     });
+  //     console.log(this.props.searchbooks.resultBooks);
+  //   } else {
+  //     alert("already searched or blank search");
+  //   }
+  // };
   render() {
     return (
       <div>
@@ -42,12 +39,12 @@ export default class SearchBooks extends Component {
           placeholder="Search Books By title or author or ISBN"
           name="searchText"
           onChange={this.onTextChange}
-          value={this.state.searchText}
+          value={this.state.value}
         />
         <button
-          className="search col-sm-2 btn btn-primary"
+          className="search btn btn-primary btn-sm m-2"
           id="search"
-          onClick={this.handleClick}
+          onClick={() => this.props.onSearch(this.state.value.trim())}
         >
           Search
         </button>

@@ -10,6 +10,8 @@
    > heroku git:remote -a prubook
 7. To push your changes to heroku
    > git push herku master
+8. To set the AppKey to heroku
+   > heroku config:set REACT_APP_API_KEY=<ApiKey>
 
 In the project directory, you can run:
 
