@@ -1,6 +1,7 @@
-import * as React from "react";
+import React from "react";
+import ReactDOM from "react-dom";
 import Adapter from "enzyme-adapter-react-16";
-import { shallow, configure, mount } from "enzyme";
+import { shallow, configure } from "enzyme";
 import SearchBooks from "../../component/SearchBooks";
 
 configure({ adapter: new Adapter() });

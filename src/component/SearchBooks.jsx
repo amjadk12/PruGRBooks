@@ -9,27 +9,9 @@ export default class SearchBooks extends Component {
     this.setState({ value: e.target.value.trim() });
     console.log(this.state.value);
   };
-  // Avoid un-neccesary calls - Already searched or Blank search
-  // handleClick = async () => {
-  //   if (
-  //     (this.props.searchbooks.prevSearchText.toLocaleLowerCase() !==
-  //       this.props.searchbooks.searchText.toLocaleLowerCase() ||
-  //       this.props.searchbooks.prevSearchText === "") &&
-  //     this.props.searchbooks.searchText !== ""
-  //   ) {
-  //     this.setState({ prevSearchText: this.props.searchbooks.searchText });
-  //     const searchResult = await SearchBooksByText(
-  //       this.props.searchbooks.searchText.trim()
-  //     );
-  //     this.setState({
-  //       resultBooks: searchResult
-  //     });
-  //     console.log(this.props.searchbooks.resultBooks);
-  //   } else {
-  //     alert("already searched or blank search");
-  //   }
-  // };
+
   render() {
+    const { onSearch } = this.props;
     return (
       <div>
         <h1>Search</h1>
@@ -44,7 +26,7 @@ export default class SearchBooks extends Component {
         <button
           className="search btn btn-primary btn-sm m-2"
           id="search"
-          onClick={() => this.props.onSearch(this.state.value.trim())}
+          onClick={() => onSearch(this.state.value.trim())}
         >
           Search
         </button>
