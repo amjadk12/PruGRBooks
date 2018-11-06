@@ -1,4 +1,4 @@
-import Axios from "axios";
+import axios from "axios";
 
 export let SearchBooksByText = async searchText => {
   const apiKey = process.env.REACT_APP_API_KEY;
@@ -6,7 +6,7 @@ export let SearchBooksByText = async searchText => {
     `https://cors-anywhere.herokuapp.com/` +
     `https://www.goodreads.com/search/index.xml?key=${apiKey}&q=${searchText}`;
 
-  const result = await Axios.get(requestUri);
+  const result = await axios.get(requestUri);
   const resultBooks = parseXMLResponse(result.data);
   return resultBooks;
 };

@@ -8,7 +8,8 @@
 5. This will create an app - https://prubook.herokuapp.com/ | https://git.heroku.com/prubook.git
 6. Set to your app
    > heroku git:remote -a prubook
-7.
+7. To push your changes to heroku
+   > git push herku master
 
 In the project directory, you can run:
 
