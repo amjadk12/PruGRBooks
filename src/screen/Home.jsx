@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import SearchBooks from "../component/SearchBooks";
 import Books from "../component/Books";
+import BookDetails from "../component/BookDetails";
 import { SearchBooksByText } from "../service/GetBooksByText";
-import PropTypes from "prop-types";
 
 export default class Home extends Component {
   state = {
@@ -61,11 +62,13 @@ export default class Home extends Component {
           onSearch={this.handleSearch}
           searchbooks={this.state.searchbooks}
         />
-        <Books
-          className="books"
-          searchbooks={this.state.searchbooks}
-          collapseBook={this.expandedBook}
-        />
+        <div className="jumbotron">
+          <Books
+            className="books"
+            searchbooks={this.state.searchbooks}
+            collapseBook={this.expandedBook}
+          />
+        </div>
       </div>
     );
   }

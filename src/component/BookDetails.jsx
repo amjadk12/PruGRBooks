@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import PropTypes from "prop-types";
+import { SearchBookDetailsById } from "../service/GetBookDetails";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -14,49 +15,18 @@ export default class BookDetails extends Component {
   }
 
   componentDidMount() {
-    this.getDescription();
+    const bookId = this.props.bookData.best_book.id;
+    const description = SearchBookDetailsById(bookId);
+    this.setState({
+      description
+    });
   }
 
-  getDescription = () => {
-    const bookId = this.props.bookData.best_book.id;
-    const requestUri =
-      `https://cors-anywhere.herokuapp.com/` +
-      `https://www.goodreads.com/book/show/${bookId}?key=${apiKey}`;
-    Axios.get(requestUri)
-      .then(res => {
-        const parser = new DOMParser();
-        const XMLResponse = parser.parseFromString(res.data, "application/xml");
-
-        const parseError = XMLResponse.getElementsByTagName("parsererror");
-
-        if (parseError.length) {
-          this.setState({
-            error: "There was an error fetching results."
-          });
-        } else {
-          let description = XMLResponse.getElementsByTagName("description")[0]
-            .innerHTML;
-
-          description = description.replace("<![CDATA[", "").replace("]]>", "");
-
-          if (!description) {
-            description = "No description found.";
-          }
-          this.setState({ description });
-        }
-      })
-      .catch(error => {
-        this.setState({
-          error: error.toString()
-        });
-      });
-  };
-
   render() {
-    const { bookData } = this.props;
+    const { bookData, onCollapsClicked } = this.props;
     return (
       <div className="row col-lg-12">
-        <button className="btn btn-primary" onClick={this.props.collapseBook}>
+        <button className="btn btn-primary" onClick={onCollapsClicked}>
           {"<< Go Back"}
         </button>
 
@@ -104,7 +74,7 @@ export default class BookDetails extends Component {
   }
 }
 
-BookInfo.propTypes = {
+BookDetails.propTypes = {
   bookData: PropTypes.object,
   collapseBook: PropTypes.func
 };
